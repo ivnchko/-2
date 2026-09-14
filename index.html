@@ -236,12 +236,14 @@
     font-size: 11.5px;
     line-height: 1.35;
     color: var(--ink-soft);
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .wp-1{ top: 4%;   left: 50%; }
-  .wp-2{ top: 27%;  left: 90%; }
+  .wp-2{ top: 27%;  left: 90%; font-size: 10px; }
   .wp-3{ top: 73%;  left: 90%; }
   .wp-4{ top: 96%;  left: 50%; }
-  .wp-5{ top: 73%;  left: 10%; white-space: nowrap; }
+  .wp-5{ top: 76%;  left: 4%; white-space: nowrap; font-size: 10.5px; }
   .wp-6{ top: 27%;  left: 10%; }
 
   /* ---------- MISSION ---------- */
@@ -587,7 +589,10 @@
   /* ---------- SPLASH INTRO ---------- */
   .splash{
     position: fixed;
-    inset: 0;
+    top: 0; left: 0; right: 0;
+    height: 100vh;
+    max-height: 900px;
+    overflow: hidden;
     z-index: 999;
     display: flex;
     flex-direction: column;
@@ -631,8 +636,6 @@
     .splash{ animation: none; display: none; }
   }
 </style>
-</head>
-<body>
 
 <div class="splash" id="splash" aria-hidden="true">
   <div class="splash-label">психолог</div>
@@ -852,10 +855,11 @@
     <p class="methods-intro">я работаю в интегративном подходе</p>
     <div class="section-head">методы, которые я использую</div>
     <div class="methods">
-      <span class="method-chip">PSY-2.0</span>
       <span class="method-chip">телесно-ориентированная терапия</span>
+      <span class="method-chip">PSY-2.0</span>
       <span class="method-chip">работа с МАК</span>
       <span class="method-chip">арт-терапия</span>
+      <span class="method-chip">эмоционально-образная терапия</span>
       <span class="method-chip">интуитивные танцы</span>
       <span class="method-chip">авторские практики под запрос</span>
     </div>
@@ -911,6 +915,21 @@
       var idx = Math.round(scroller.scrollLeft / scroller.clientWidth);
       dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
     }, { passive: true });
+  })();
+  (function(){
+    function sendHeight(){
+      var h = document.documentElement.scrollHeight;
+      window.parent.postMessage({ aipsyHeight: h }, '*');
+    }
+    window.addEventListener('load', sendHeight);
+    window.addEventListener('resize', sendHeight);
+    if (window.ResizeObserver) {
+      new ResizeObserver(sendHeight).observe(document.body);
+    } else {
+      setInterval(sendHeight, 800);
+    }
+    setTimeout(sendHeight, 300);
+    setTimeout(sendHeight, 1200);
   })();
 </script>
 </body>
