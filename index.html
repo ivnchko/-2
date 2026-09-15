@@ -349,13 +349,18 @@
   }
 
   /* ---------- PRICING ---------- */
-  .plans{ display: flex; flex-direction: column; }
+  .plans{ display: flex; flex-direction: column; gap: 14px; }
   .plan{
-    padding: 24px 0;
-    border-top: 1px solid var(--card-line);
+    padding: 22px 20px;
+    border-top: none;
+    border-radius: 20px;
     color: var(--card-ink);
   }
-  .plan:first-child{ border-top: 0; padding-top: 0; }
+  .plan:nth-child(1){ background: #f7f2ea; }
+  .plan:nth-child(2){ background: #f4ece4; }
+  .plan:nth-child(3){ background: #eeded5; }
+  .plan:nth-child(4){ background: #ead4cb; }
+  .plan:first-child{ padding-top: 22px; }
   .plan-head{
     display: flex;
     align-items: baseline;
@@ -469,8 +474,8 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    background: var(--card-bg-soft);
-    border-radius: 4px;
+    background: #f2e0d8;
+    border-radius: 10px;
     padding: 10px 12px;
   }
   .subplan .sp-name{ font-size: 13px; line-height: 1.4; color: var(--card-ink); }
@@ -690,7 +695,7 @@
           <img class="wheel-illustration" src="values-center.jpg" alt="">
         </div>
         <div class="wheel-item wp-1">безопасность</div>
-        <div class="wheel-item wp-2">конфиденциальность</div>
+        <div class="wheel-item wp-2">конфиден&shy;циальность</div>
         <div class="wheel-item wp-3">честность</div>
         <div class="wheel-item wp-4">доверие</div>
         <div class="wheel-item wp-5">совместный вклад</div>
